@@ -1,0 +1,16 @@
+{
+  "name": "NOOK — Votre maison a de la memoire",
+  "short_name": "NOOK",
+  "description": "NOOK reconstruit automatiquement le stock probable de votre foyer a partir de vos tickets de caisse.",
+  "start_url": "/dashboard",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#faf7f0",
+  "theme_color": "#577643",
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
