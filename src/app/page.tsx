@@ -149,6 +149,7 @@ function AuthForm({ onBack }: { onBack: () => void }) {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [confirmationSent, setConfirmationSent] = useState(false);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -156,7 +157,7 @@ function AuthForm({ onBack }: { onBack: () => void }) {
     setError(null);
 
     const supabase = createClient();
-    const { error: authError } =
+    const { data, error: authError } =
       mode === "signup"
         ? await supabase.auth.signUp({ email, password })
         : await supabase.auth.signInWithPassword({ email, password });
@@ -168,7 +169,37 @@ function AuthForm({ onBack }: { onBack: () => void }) {
       return;
     }
 
+    if (!data.session) {
+      // Compte cree mais confirmation email requise avant qu'une session existe.
+      setConfirmationSent(true);
+      return;
+    }
+
     router.push("/dashboard");
+  }
+
+  if (confirmationSent) {
+    return (
+      <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
+        <NookLogo className="h-12 w-12" />
+        <div className="w-full max-w-xs space-y-1">
+          <h2 className="text-xl font-semibold text-mist-900">
+            Vérifiez votre boîte mail
+          </h2>
+          <p className="text-sm text-mist-500">
+            Un lien de confirmation a été envoyé à {email}. Cliquez dessus pour
+            activer votre foyer NOOK.
+          </p>
+        </div>
+        <button
+          type="button"
+          className="text-xs text-muted-foreground"
+          onClick={onBack}
+        >
+          Retour
+        </button>
+      </div>
+    );
   }
 
   return (
