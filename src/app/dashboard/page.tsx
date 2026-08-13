@@ -129,11 +129,11 @@ function EmptyState() {
     <Card>
       <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
         <Image
-          src="/brand/mascotte-top.png"
+          src="/brand/symbole-maison.png"
           alt=""
-          width={110}
-          height={128}
-          className="h-20 w-auto"
+          width={540}
+          height={450}
+          className="h-16 w-auto"
         />
         <p className="text-mist-900">NOOK n&apos;a encore aucun souvenir de votre foyer.</p>
         <p className="text-sm text-muted-foreground">
