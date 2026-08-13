@@ -1,5 +1,10 @@
 import { ABBREVIATIONS, NOISE_TOKENS, SYNONYMS } from "./dictionary";
-import { isNoiseQuantityToken, stripAccents, tokenize } from "./rules";
+import {
+  extractMultiplier,
+  isNoiseQuantityToken,
+  stripAccents,
+  tokenize,
+} from "./rules";
 
 export interface NormalizationResult {
   /** Nom nettoye, pret a afficher ("Lessive liquide"). */
@@ -27,12 +32,9 @@ export function normalizeProductLabel(raw: string): NormalizationResult {
     if (!upper) continue;
 
     if (isNoiseQuantityToken(upper)) {
-      const multiplierMatch = /^X?(\d+)X?$/i.exec(upper);
-      if (multiplierMatch?.[1]) {
-        const parsed = parseInt(multiplierMatch[1], 10);
-        if (Number.isFinite(parsed) && parsed > 1 && parsed <= 100) {
-          quantityMultiplier = parsed;
-        }
+      const multiplier = extractMultiplier(upper);
+      if (multiplier !== null && multiplier > 1 && multiplier <= 100) {
+        quantityMultiplier = multiplier;
       }
       continue;
     }

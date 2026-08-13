@@ -39,6 +39,7 @@ export const ABBREVIATIONS: Record<string, string> = {
   BEUR: "beurre",
   LAIT: "lait",
   OEUF: "oeufs",
+  PDT: "pommes de terre",
 };
 
 /**
@@ -54,6 +55,8 @@ export const NOISE_TOKENS = new Set([
   "NEW",
   "LOT",
   "PRIX",
+  "VRAC",
+  "EUR",
 ]);
 
 /**

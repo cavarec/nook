@@ -1,6 +1,44 @@
 "use client";
 
+import type { TextItem } from "pdfjs-dist/types/src/display/api";
 import type { OcrProgress } from "./extractText";
+
+const SAME_LINE_Y_TOLERANCE = 2;
+
+/**
+ * pdf.js ne rend pas les items de texte dans l'ordre visuel ni avec des
+ * sauts de ligne : chaque item porte juste sa position (x, y). On
+ * reconstitue les lignes en groupant les items par position verticale
+ * proche, puis en les triant de gauche a droite au sein de chaque ligne.
+ */
+function reconstructLines(items: TextItem[]): string {
+  const sorted = [...items].sort((a, b) => {
+    const dy = b.transform[5] - a.transform[5];
+    if (Math.abs(dy) > SAME_LINE_Y_TOLERANCE) return dy;
+    return a.transform[4] - b.transform[4];
+  });
+
+  const lines: string[] = [];
+  let currentLine: string[] = [];
+  let currentY: number | null = null;
+
+  for (const item of sorted) {
+    const y = item.transform[5];
+    if (currentY === null || Math.abs(y - currentY) <= SAME_LINE_Y_TOLERANCE) {
+      currentLine.push(item.str);
+      currentY ??= y;
+    } else {
+      lines.push(currentLine.join(" ").replace(/\s+/g, " ").trim());
+      currentLine = [item.str];
+      currentY = y;
+    }
+  }
+  if (currentLine.length > 0) {
+    lines.push(currentLine.join(" ").replace(/\s+/g, " ").trim());
+  }
+
+  return lines.filter(Boolean).join("\n");
+}
 
 /**
  * Extrait le texte d'un PDF. Si le PDF contient du texte embarque
@@ -25,10 +63,10 @@ export async function extractTextFromPdf(
   for (let pageNum = 1; pageNum <= pdf.numPages; pageNum++) {
     const page = await pdf.getPage(pageNum);
     const textContent = await page.getTextContent();
-    const pageText = textContent.items
-      .map((item) => ("str" in item ? item.str : ""))
-      .join(" ");
-    embeddedText += `${pageText}\n`;
+    const items = textContent.items.filter(
+      (item): item is TextItem => "str" in item && item.str.trim().length > 0
+    );
+    embeddedText += `${reconstructLines(items)}\n`;
   }
 
   if (embeddedText.trim().length > 20) {
