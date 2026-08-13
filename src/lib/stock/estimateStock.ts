@@ -1,4 +1,8 @@
-import type { PurchaseHistoryEntry, StockEstimate } from "@/lib/types/domain";
+import type {
+  PurchaseHistoryEntry,
+  StockCorrection,
+  StockEstimate,
+} from "@/lib/types/domain";
 import { daysBetween, intervalsInDays, mean } from "./stats";
 
 /**
@@ -49,4 +53,49 @@ export function estimateStock(
   const estimatedQuantity = Math.max(0, Math.round(rawEstimate * 100) / 100);
 
   return { estimatedQuantity, averageIntervalDays, daysSinceLastPurchase };
+}
+
+/**
+ * Applique les corrections manuelles (+/-, "termine", "encore disponible")
+ * par-dessus l'estimation issue des achats. Seules les corrections
+ * posterieures au dernier achat comptent : un nouvel achat est un signal
+ * plus fort qui remet le compteur a zero par rapport a d'anciennes
+ * corrections.
+ */
+export function applyStockCorrections(
+  baseQuantity: number,
+  lastPurchaseDate: string | null,
+  corrections: StockCorrection[]
+): number {
+  const relevant = lastPurchaseDate
+    ? corrections.filter(
+        (c) => new Date(c.createdAt).getTime() >= new Date(lastPurchaseDate).getTime()
+      )
+    : corrections;
+
+  if (relevant.length === 0) return baseQuantity;
+
+  const sorted = [...relevant].sort(
+    (a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()
+  );
+
+  let quantity = baseQuantity;
+  for (const correction of sorted) {
+    switch (correction.type) {
+      case "increment":
+        quantity += 1;
+        break;
+      case "decrement":
+        quantity = Math.max(0, quantity - 1);
+        break;
+      case "finished":
+        quantity = 0;
+        break;
+      case "still_available":
+        quantity = Math.max(quantity, 1);
+        break;
+    }
+  }
+
+  return Math.round(quantity * 100) / 100;
 }

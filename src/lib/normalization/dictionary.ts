@@ -14,6 +14,7 @@ export const ABBREVIATIONS: Record<string, string> = {
   SHAMP: "shampoing",
   YAO: "yaourts",
   YOG: "yaourts",
+  YRT: "yaourts",
   FROM: "fromage",
   BISC: "biscuits",
   CHOC: "chocolat",

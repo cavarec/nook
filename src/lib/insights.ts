@@ -1,5 +1,5 @@
 import type { Product, Purchase, StockCorrection } from "@/lib/types/domain";
-import { estimateStock } from "@/lib/stock/estimateStock";
+import { applyStockCorrections, estimateStock } from "@/lib/stock/estimateStock";
 import { buildConfidenceFactors, scoreConfidence } from "@/lib/confidence/scoreConfidence";
 import { computeFreshness } from "@/lib/waste/freshnessEngine";
 import { PERISHABLE_CATEGORIES } from "@/lib/types/domain";
@@ -44,6 +44,12 @@ export function computeProductInsight(
   );
   const lastPurchase = sortedPurchases[0] ?? null;
 
+  const estimatedQuantity = applyStockCorrections(
+    estimate.estimatedQuantity,
+    lastPurchase?.purchaseDate ?? null,
+    productCorrections
+  );
+
   const isPerishable = PERISHABLE_CATEGORIES.includes(product.category);
   const freshnessStatus =
     isPerishable && lastPurchase
@@ -56,7 +62,7 @@ export function computeProductInsight(
 
   return {
     product,
-    estimatedQuantity: estimate.estimatedQuantity,
+    estimatedQuantity,
     confidenceScore,
     lastPurchaseDate: lastPurchase?.purchaseDate ?? null,
     daysSinceLastPurchase: estimate.daysSinceLastPurchase,
