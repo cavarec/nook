@@ -11,6 +11,7 @@ import { Badge } from "@/components/ui/badge";
 import { extractReceiptFromFile, type OcrProgress } from "@/lib/ocr/importTicket";
 import { importParsedReceipt } from "@/lib/db/mutations";
 import type { ParsedReceipt } from "@/lib/types/domain";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 type Status = "idle" | "processing" | "review" | "saving" | "done" | "error";
 
@@ -62,12 +63,11 @@ export default function ImportPage() {
 
   return (
     <div className="space-y-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-mist-900">Importer un ticket</h1>
-        <p className="text-sm text-muted-foreground">
-          PDF, JPG, PNG ou capture d&apos;écran — NOOK s&apos;occupe du reste.
-        </p>
-      </div>
+      <PageHeader
+        icon="stock"
+        title="Importer un ticket"
+        subtitle="PDF, JPG, PNG ou capture d'écran — NOOK s'occupe du reste."
+      />
 
       {status === "idle" && (
         <label className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-2 border-dashed border-leaf-300 bg-leaf-50 py-16 text-center">
@@ -166,9 +166,9 @@ export default function ImportPage() {
             <Image
               src="/brand/mascotte-a-table.png"
               alt=""
-              width={175}
+              width={130}
               height={128}
-              className="h-24 w-auto"
+              className="h-20 w-auto"
             />
             <div>
               <p className="font-medium text-mist-900">

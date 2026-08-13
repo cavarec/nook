@@ -34,7 +34,7 @@ export default function HistoryPage() {
   return (
     <div className="space-y-4 pb-6">
       <div>
-        <h1 className="text-2xl font-semibold text-mist-900">Historique</h1>
+        <h1 className="font-heading text-2xl font-semibold text-mist-900">Historique</h1>
         <p className="text-sm text-muted-foreground">Tous les tickets importés.</p>
       </div>
 

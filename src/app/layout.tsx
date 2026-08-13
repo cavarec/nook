@@ -1,6 +1,19 @@
 import type { Metadata, Viewport } from "next";
+import { Fredoka, Nunito } from "next/font/google";
 import { AppShell } from "@/components/layout/AppShell";
 import "./globals.css";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-sans",
+});
+
+const fredoka = Fredoka({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-heading",
+});
 
 export const metadata: Metadata = {
   title: "NOOK — Votre maison a de la memoire",
@@ -34,7 +47,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fr" suppressHydrationWarning>
+    <html lang="fr" suppressHydrationWarning className={`${nunito.variable} ${fredoka.variable}`}>
       <body>
         <AppShell>{children}</AppShell>
       </body>

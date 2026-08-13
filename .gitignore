@@ -22,8 +22,13 @@ next-env.d.ts
 .DS_Store
 *.pem
 
-# pack branding source brut (non retouche) - voir public/brand pour les exports utilises
+# packs branding source bruts (non retouches) - voir public/brand pour les exports utilises
 /branding
+/branding-v2
+
+# scripts/sorties de test ponctuels, cache tesseract telecharge a l'execution
+/scratch
+*.traineddata
 
 # env
 .env

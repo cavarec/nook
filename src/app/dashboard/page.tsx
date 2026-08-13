@@ -37,7 +37,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6 pb-6">
       <div>
-        <h1 className="text-2xl font-semibold text-mist-900">Tableau de bord</h1>
+        <h1 className="font-heading text-2xl font-semibold text-mist-900">Tableau de bord</h1>
         <p className="text-sm text-muted-foreground">
           Ce que NOOK sait de votre foyer aujourd&apos;hui.
         </p>
@@ -129,11 +129,11 @@ function EmptyState() {
     <Card>
       <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
         <Image
-          src="/brand/symbole-maison.png"
+          src="/brand/mascotte-top.png"
           alt=""
-          width={540}
-          height={450}
-          className="h-16 w-auto"
+          width={103}
+          height={128}
+          className="h-20 w-auto"
         />
         <p className="text-mist-900">NOOK n&apos;a encore aucun souvenir de votre foyer.</p>
         <p className="text-sm text-muted-foreground">

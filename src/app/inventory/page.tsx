@@ -39,7 +39,7 @@ export default function InventoryPage() {
   return (
     <div className="space-y-6 pb-6">
       <PageHeader
-        icon="/brand/feature-stock.png"
+        icon="produits"
         title="Inventaire"
         subtitle="Ce que NOOK pense que vous avez, par rayon."
       />

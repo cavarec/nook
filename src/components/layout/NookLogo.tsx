@@ -1,14 +1,5 @@
-import Image from "next/image";
+import { NookMark } from "@/components/brand/NookMark";
 
 export function NookLogo({ className }: { className?: string }) {
-  return (
-    <Image
-      src="/icons/icon-192.png"
-      alt="NOOK"
-      width={192}
-      height={192}
-      className={className}
-      priority
-    />
-  );
+  return <NookMark className={className} />;
 }

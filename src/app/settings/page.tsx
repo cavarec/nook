@@ -31,7 +31,7 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6 pb-6">
       <PageHeader
-        icon="/brand/feature-famille.png"
+        icon="famille"
         title="Réglages"
         subtitle="Votre foyer NOOK."
       />

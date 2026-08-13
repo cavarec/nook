@@ -19,7 +19,7 @@ export default function AccountPage() {
   return (
     <div className="space-y-6 pb-6">
       <div>
-        <h1 className="text-2xl font-semibold text-mist-900">Mon compte</h1>
+        <h1 className="font-heading text-2xl font-semibold text-mist-900">Mon compte</h1>
       </div>
 
       <Card>

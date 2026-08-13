@@ -98,6 +98,24 @@ const config: Config = {
           800: "#262e33",
           900: "#171c1f",
         },
+        frigo: {
+          // Bleu Frigo #2E86DE (icone "Suivi produits", v2 signaletique)
+          50: "#eaf3fc",
+          100: "#cfe4f8",
+          300: "#7cb3ec",
+          500: "#2e86de",
+          700: "#2168b0",
+          900: "#164a7d",
+        },
+        rose: {
+          // Rose Famille #E0578C (icone "En famille", v2 signaletique)
+          50: "#fdedf3",
+          100: "#fad3e3",
+          300: "#ee8fb6",
+          500: "#e0578c",
+          700: "#b23c6b",
+          900: "#7a2748",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -106,6 +124,7 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-sans)", "ui-sans-serif", "system-ui", "sans-serif"],
+        heading: ["var(--font-heading)", "ui-sans-serif", "system-ui", "sans-serif"],
       },
     },
   },

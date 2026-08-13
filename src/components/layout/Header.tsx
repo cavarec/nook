@@ -8,7 +8,9 @@ export function Header() {
       <div className="mx-auto flex max-w-lg items-center justify-between px-5 py-3">
         <Link href="/dashboard" className="flex items-center gap-2">
           <NookLogo className="h-7 w-7" />
-          <span className="text-lg font-semibold tracking-tight">NOOK</span>
+          <span className="font-heading text-lg font-semibold tracking-tight text-nook-600">
+            Nook
+          </span>
         </Link>
         <Link
           href="/settings"

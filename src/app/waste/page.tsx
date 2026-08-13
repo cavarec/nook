@@ -69,7 +69,7 @@ export default function WastePage() {
   return (
     <div className="space-y-6 pb-6">
       <PageHeader
-        icon="/brand/feature-peremption.png"
+        icon="peremption"
         title="Anti-gaspillage"
         subtitle="Basé sur la date d'achat, jamais sur une DLC saisie à la main."
       />

@@ -49,7 +49,7 @@ export default function ShoppingPage() {
   return (
     <div className="space-y-6 pb-6">
       <PageHeader
-        icon="/brand/feature-courses.png"
+        icon="courses"
         title="Mode courses"
         subtitle="Vérifiez avant d'acheter — évitez les doublons."
       />

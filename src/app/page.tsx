@@ -4,33 +4,34 @@ import Image from "next/image";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { NookLogo } from "@/components/layout/NookLogo";
+import { FeatureIcon, type FeatureIconType } from "@/components/brand/FeatureIcon";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 import { cn } from "@/lib/utils";
 
-const FEATURES = [
+const FEATURES: { icon: FeatureIconType; title: string; body: string }[] = [
   {
-    icon: "/brand/feature-courses.png",
+    icon: "courses",
     title: "Liste de courses",
     body: "Ajoutez, partagez, achetez l'esprit tranquille.",
   },
   {
-    icon: "/brand/feature-stock.png",
+    icon: "stock",
     title: "Stock maison",
     body: "Suivez vos produits dans vos placards et frigo.",
   },
   {
-    icon: "/brand/feature-peremption.png",
+    icon: "peremption",
     title: "Dates de péremption",
     body: "Évitez le gaspillage.",
   },
   {
-    icon: "/brand/feature-famille.png",
+    icon: "famille",
     title: "En famille",
     body: "Partagez avec vos proches.",
   },
-] as const;
+];
 
 const STEP_COUNT = 3;
 
@@ -47,7 +48,7 @@ export default function OnboardingPage() {
               <>
                 <NookLogo className="h-16 w-16" />
                 <div className="space-y-3">
-                  <h1 className="text-2xl font-semibold tracking-tight text-mist-900">
+                  <h1 className="font-heading text-2xl font-semibold tracking-tight text-mist-900">
                     NOOK
                   </h1>
                   <p className="text-base text-mist-500">
@@ -62,13 +63,13 @@ export default function OnboardingPage() {
                 <Image
                   src="/brand/mascotte-principale.png"
                   alt=""
-                  width={585}
-                  height={505}
+                  width={562}
+                  height={490}
                   className="w-56 max-w-full rounded-3xl"
                   priority
                 />
                 <div className="space-y-3">
-                  <h1 className="text-2xl font-semibold tracking-tight text-mist-900">
+                  <h1 className="font-heading text-2xl font-semibold tracking-tight text-mist-900">
                     Importez vos tickets de caisse.
                   </h1>
                   <p className="text-base text-mist-500">
@@ -80,7 +81,7 @@ export default function OnboardingPage() {
 
             {step === 2 && (
               <div className="w-full max-w-xs space-y-5">
-                <h1 className="text-xl font-semibold tracking-tight text-mist-900">
+                <h1 className="font-heading text-xl font-semibold tracking-tight text-mist-900">
                   Avant d&apos;acheter,
                   <br />
                   vérifiez ce que vous possédez déjà.
@@ -91,13 +92,7 @@ export default function OnboardingPage() {
                       key={feature.title}
                       className="flex items-center gap-3 rounded-xl bg-white/70 p-3 shadow-sm"
                     >
-                      <Image
-                        src={feature.icon}
-                        alt=""
-                        width={75}
-                        height={75}
-                        className="h-10 w-10 shrink-0"
-                      />
+                      <FeatureIcon type={feature.icon} className="h-10 w-10" />
                       <div>
                         <p className="text-sm font-semibold text-mist-900">
                           {feature.title}
@@ -183,7 +178,7 @@ function AuthForm({ onBack }: { onBack: () => void }) {
       <div className="flex flex-1 flex-col items-center justify-center gap-4 text-center">
         <NookLogo className="h-12 w-12" />
         <div className="w-full max-w-xs space-y-1">
-          <h2 className="text-xl font-semibold text-mist-900">
+          <h2 className="font-heading text-xl font-semibold text-mist-900">
             Vérifiez votre boîte mail
           </h2>
           <p className="text-sm text-mist-500">
@@ -206,7 +201,7 @@ function AuthForm({ onBack }: { onBack: () => void }) {
     <div className="flex flex-1 flex-col items-center justify-center gap-6">
       <NookLogo className="h-12 w-12" />
       <div className="w-full max-w-xs space-y-1">
-        <h2 className="text-xl font-semibold text-mist-900">
+        <h2 className="font-heading text-xl font-semibold text-mist-900">
           {mode === "signup" ? "Créer votre foyer" : "Se connecter"}
         </h2>
         <p className="text-sm text-mist-500">
