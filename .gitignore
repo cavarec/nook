@@ -22,6 +22,9 @@ next-env.d.ts
 .DS_Store
 *.pem
 
+# pack branding source brut (non retouche) - voir public/brand pour les exports utilises
+/branding
+
 # env
 .env
 .env*.local

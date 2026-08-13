@@ -19,13 +19,13 @@ export default function AccountPage() {
   return (
     <div className="space-y-6 pb-6">
       <div>
-        <h1 className="text-2xl font-semibold text-anthracite-800">Mon compte</h1>
+        <h1 className="text-2xl font-semibold text-mist-900">Mon compte</h1>
       </div>
 
       <Card>
         <CardContent className="py-4">
           <p className="text-xs text-muted-foreground">Adresse email</p>
-          <p className="text-base font-medium text-anthracite-800">
+          <p className="text-base font-medium text-mist-900">
             {loading ? "Chargement..." : user?.email ?? "Non connecté"}
           </p>
         </CardContent>

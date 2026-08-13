@@ -7,10 +7,10 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary/15 text-primary-foreground bg-sage-100 text-sage-800",
+        default: "bg-leaf-100 text-leaf-800",
         muted: "bg-muted text-muted-foreground",
-        fresh: "bg-sage-100 text-sage-800",
-        watch: "bg-amber-100 text-amber-800",
+        fresh: "bg-leaf-100 text-leaf-800",
+        watch: "bg-sun-100 text-sun-900",
         urgent: "bg-red-100 text-red-800",
       },
     },

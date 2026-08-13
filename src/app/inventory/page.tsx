@@ -7,6 +7,7 @@ import { getDb } from "@/lib/db/indexeddb";
 import { computeProductInsight } from "@/lib/insights";
 import { ALL_CATEGORIES } from "@/lib/types/domain";
 import { ProductRow } from "@/components/inventory/ProductRow";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 export default function InventoryPage() {
   const { householdId, user } = useAuth();
@@ -37,10 +38,11 @@ export default function InventoryPage() {
 
   return (
     <div className="space-y-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-anthracite-800">Inventaire</h1>
-        <p className="text-sm text-muted-foreground">Ce que NOOK pense que vous avez, par rayon.</p>
-      </div>
+      <PageHeader
+        icon="/brand/feature-stock.png"
+        title="Inventaire"
+        subtitle="Ce que NOOK pense que vous avez, par rayon."
+      />
 
       {grouped.length === 0 && (
         <p className="py-8 text-center text-sm text-muted-foreground">

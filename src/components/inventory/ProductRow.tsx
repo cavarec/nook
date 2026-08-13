@@ -26,7 +26,7 @@ export function ProductRow({
   return (
     <div className="flex items-center justify-between rounded-xl border border-border px-4 py-3">
       <div className="min-w-0 flex-1">
-        <p className="truncate font-medium text-anthracite-800">{product.name}</p>
+        <p className="truncate font-medium text-mist-900">{product.name}</p>
         <div className="mt-1 flex flex-wrap items-center gap-2">
           <span className="text-sm text-muted-foreground">
             Stock probable : {estimatedQuantity}

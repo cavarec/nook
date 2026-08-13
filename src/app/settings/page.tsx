@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { createClient } from "@/lib/supabase/client";
 import { Card, CardContent } from "@/components/ui/card";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const LINKS = [
   { href: "/history", label: "Historique des tickets", icon: History },
@@ -29,15 +30,16 @@ export default function SettingsPage() {
 
   return (
     <div className="space-y-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-anthracite-800">Réglages</h1>
-        <p className="text-sm text-muted-foreground">Votre foyer NOOK.</p>
-      </div>
+      <PageHeader
+        icon="/brand/feature-famille.png"
+        title="Réglages"
+        subtitle="Votre foyer NOOK."
+      />
 
       <Card>
         <CardContent className="py-4">
           <p className="text-xs text-muted-foreground">Foyer</p>
-          <p className="text-base font-medium text-anthracite-800">
+          <p className="text-base font-medium text-mist-900">
             {memberCount !== null
               ? `${memberCount} membre${memberCount > 1 ? "s" : ""}`
               : "Chargement..."}
@@ -52,7 +54,7 @@ export default function SettingsPage() {
             href={href}
             className="flex items-center justify-between rounded-xl border border-border px-4 py-3.5"
           >
-            <span className="flex items-center gap-3 text-anthracite-800">
+            <span className="flex items-center gap-3 text-mist-900">
               <Icon className="h-4.5 w-4.5 text-muted-foreground" />
               {label}
             </span>

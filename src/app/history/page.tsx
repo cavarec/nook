@@ -34,7 +34,7 @@ export default function HistoryPage() {
   return (
     <div className="space-y-4 pb-6">
       <div>
-        <h1 className="text-2xl font-semibold text-anthracite-800">Historique</h1>
+        <h1 className="text-2xl font-semibold text-mist-900">Historique</h1>
         <p className="text-sm text-muted-foreground">Tous les tickets importés.</p>
       </div>
 
@@ -48,7 +48,7 @@ export default function HistoryPage() {
             <Card key={ticket.id}>
               <CardContent className="flex items-center justify-between py-4">
                 <div>
-                  <p className="font-medium text-anthracite-800">
+                  <p className="font-medium text-mist-900">
                     {ticket.storeName ?? "Ticket sans enseigne"}
                   </p>
                   <p className="text-xs text-muted-foreground">
@@ -57,7 +57,7 @@ export default function HistoryPage() {
                   </p>
                 </div>
                 {ticket.totalAmount !== null && (
-                  <span className="text-sm font-medium text-anthracite-800">
+                  <span className="text-sm font-medium text-mist-900">
                     {ticket.totalAmount.toFixed(2)} €
                   </span>
                 )}

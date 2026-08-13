@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useLiveQuery } from "dexie-react-hooks";
 import { useMemo } from "react";
@@ -36,7 +37,7 @@ export default function DashboardPage() {
   return (
     <div className="space-y-6 pb-6">
       <div>
-        <h1 className="text-2xl font-semibold text-anthracite-800">Tableau de bord</h1>
+        <h1 className="text-2xl font-semibold text-mist-900">Tableau de bord</h1>
         <p className="text-sm text-muted-foreground">
           Ce que NOOK sait de votre foyer aujourd&apos;hui.
         </p>
@@ -92,7 +93,7 @@ function StatCard({ label, value }: { label: string; value: string }) {
     <Card>
       <CardContent className="pt-5">
         <p className="text-xs text-muted-foreground">{label}</p>
-        <p className="mt-1 text-xl font-semibold text-anthracite-800">{value}</p>
+        <p className="mt-1 text-xl font-semibold text-mist-900">{value}</p>
       </CardContent>
     </Card>
   );
@@ -114,7 +115,7 @@ function ProductList({
       <CardContent className="space-y-2">
         {items.map((item) => (
           <div key={item.name} className="flex items-center justify-between text-sm">
-            <span className="text-anthracite-800">{item.name}</span>
+            <span className="text-mist-900">{item.name}</span>
             <span className="text-muted-foreground">{item.detail}</span>
           </div>
         ))}
@@ -127,7 +128,14 @@ function EmptyState() {
   return (
     <Card>
       <CardContent className="flex flex-col items-center gap-3 py-10 text-center">
-        <p className="text-anthracite-800">NOOK n&apos;a encore aucun souvenir de votre foyer.</p>
+        <Image
+          src="/brand/mascotte-top.png"
+          alt=""
+          width={110}
+          height={128}
+          className="h-20 w-auto"
+        />
+        <p className="text-mist-900">NOOK n&apos;a encore aucun souvenir de votre foyer.</p>
         <p className="text-sm text-muted-foreground">
           Importez votre premier ticket pour commencer.
         </p>

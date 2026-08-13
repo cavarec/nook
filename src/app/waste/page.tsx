@@ -8,6 +8,7 @@ import { computeFreshness, calculatePotentialWasteValue } from "@/lib/waste/fres
 import { PERISHABLE_CATEGORIES } from "@/lib/types/domain";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
+import { PageHeader } from "@/components/layout/PageHeader";
 
 const FRESHNESS_LABEL: Record<string, { emoji: string; label: string }> = {
   fresh: { emoji: "🟢", label: "Récent" },
@@ -67,17 +68,16 @@ export default function WastePage() {
 
   return (
     <div className="space-y-6 pb-6">
-      <div>
-        <h1 className="text-2xl font-semibold text-anthracite-800">Anti-gaspillage</h1>
-        <p className="text-sm text-muted-foreground">
-          Basé sur la date d&apos;achat, jamais sur une DLC saisie à la main.
-        </p>
-      </div>
+      <PageHeader
+        icon="/brand/feature-peremption.png"
+        title="Anti-gaspillage"
+        subtitle="Basé sur la date d'achat, jamais sur une DLC saisie à la main."
+      />
 
       <Card>
         <CardContent className="py-4">
           <p className="text-xs text-muted-foreground">Valeur potentiellement gaspillée</p>
-          <p className="text-xl font-semibold text-anthracite-800">
+          <p className="text-xl font-semibold text-mist-900">
             {wasteValue.toFixed(2)} €
           </p>
         </CardContent>
@@ -95,7 +95,7 @@ export default function WastePage() {
               className="flex items-center justify-between rounded-xl border border-border px-4 py-3"
             >
               <div>
-                <p className="font-medium text-anthracite-800">{product.name}</p>
+                <p className="font-medium text-mist-900">{product.name}</p>
                 <p className="text-xs text-muted-foreground">
                   Acheté il y a {freshness.daysSincePurchase} jours
                 </p>

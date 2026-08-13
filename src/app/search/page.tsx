@@ -41,7 +41,7 @@ export default function SearchPage() {
           >
             <div className="flex items-start justify-between">
               <div>
-                <p className="font-medium text-anthracite-800">
+                <p className="font-medium text-mist-900">
                   {insight.product.name}
                 </p>
                 <p className="text-sm text-muted-foreground">
