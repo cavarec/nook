@@ -45,19 +45,14 @@ export default function OnboardingPage() {
         <>
           <div className="flex flex-1 flex-col items-center justify-center gap-6">
             {step === 0 && (
-              <>
-                <Image
-                  src="/brand/logo-hero.png"
-                  alt="NOOK — Courses, Stock, Maison"
-                  width={900}
-                  height={958}
-                  className="w-64 max-w-full"
-                  priority
-                />
-                <p className="text-base text-mist-500">
-                  Votre maison a de la mémoire.
-                </p>
-              </>
+              <Image
+                src="/brand/logo-hero.png"
+                alt="NOOK — Courses, Stock, Maison"
+                width={900}
+                height={958}
+                className="w-64 max-w-full"
+                priority
+              />
             )}
 
             {step === 1 && (
