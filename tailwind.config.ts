@@ -116,6 +116,24 @@ const config: Config = {
           700: "#b23c6b",
           900: "#7a2748",
         },
+        scan: {
+          // Rouge Code-barres #F4511E (icone "Code-barres", v3 signaletique)
+          50: "#feefea",
+          100: "#fcd7c9",
+          300: "#f68f6b",
+          500: "#f4511e",
+          700: "#c33f18",
+          900: "#852b10",
+        },
+        gear: {
+          // Vert Parametres #00897B (icone "Parametres", v3 signaletique)
+          50: "#e6f4f2",
+          100: "#b3ded8",
+          300: "#4dab9e",
+          500: "#00897b",
+          700: "#006e62",
+          900: "#004a42",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",

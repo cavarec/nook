@@ -25,6 +25,7 @@ next-env.d.ts
 # packs branding source bruts (non retouches) - voir public/brand pour les exports utilises
 /branding
 /branding-v2
+/branding-v3
 
 # scripts/sorties de test ponctuels, cache tesseract telecharge a l'execution
 /scratch

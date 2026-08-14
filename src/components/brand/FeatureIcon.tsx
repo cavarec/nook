@@ -5,7 +5,11 @@ export type FeatureIconType =
   | "stock"
   | "produits"
   | "peremption"
-  | "famille";
+  | "famille"
+  | "etiquette"
+  | "codeBarres"
+  | "notification"
+  | "parametres";
 
 const CONFIG: Record<FeatureIconType, { bg: string; label: string }> = {
   courses: { bg: "#34C759", label: "Liste de courses" },
@@ -13,6 +17,10 @@ const CONFIG: Record<FeatureIconType, { bg: string; label: string }> = {
   produits: { bg: "#2E86DE", label: "Suivi produits" },
   peremption: { bg: "#7E57C2", label: "Dates de péremption" },
   famille: { bg: "#E0578C", label: "En famille" },
+  etiquette: { bg: "#2E7D32", label: "Étiquette" },
+  codeBarres: { bg: "#F4511E", label: "Code-barres" },
+  notification: { bg: "#FF9800", label: "Notification" },
+  parametres: { bg: "#00897B", label: "Paramètres" },
 };
 
 function Pictogram({ type }: { type: FeatureIconType }) {
@@ -130,6 +138,71 @@ function Pictogram({ type }: { type: FeatureIconType }) {
             fill="#fff"
             opacity="0.85"
           />
+        </svg>
+      );
+    case "etiquette":
+      return (
+        <svg viewBox="0 0 100 100" style={{ width: "56%", height: "56%" }}>
+          <path
+            d="M12 50 L40 18 H82 Q90 18 90 26 V68 Q90 76 82 76 H40 Z"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="8"
+            strokeLinejoin="round"
+          />
+          <circle cx="34" cy="34" r="7" fill="#fff" />
+          <rect x="52" y="38" width="10" height="10" rx="2" fill="#fff" />
+          <rect x="68" y="38" width="10" height="10" rx="2" fill="#fff" />
+          <rect x="52" y="54" width="10" height="10" rx="2" fill="#fff" />
+          <rect x="68" y="54" width="10" height="10" rx="2" fill="#fff" />
+        </svg>
+      );
+    case "codeBarres":
+      return (
+        <svg viewBox="0 0 100 100" style={{ width: "56%", height: "56%" }}>
+          <path d="M14 30 V18 Q14 14 18 14 H30" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round" />
+          <path d="M70 14 H82 Q86 14 86 18 V30" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round" />
+          <path d="M86 70 V82 Q86 86 82 86 H70" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round" />
+          <path d="M30 86 H18 Q14 86 14 82 V70" fill="none" stroke="#fff" strokeWidth="8" strokeLinecap="round" />
+          <line x1="30" y1="32" x2="30" y2="68" stroke="#fff" strokeWidth="6" strokeLinecap="round" />
+          <line x1="42" y1="32" x2="42" y2="68" stroke="#fff" strokeWidth="10" strokeLinecap="round" />
+          <line x1="56" y1="32" x2="56" y2="68" stroke="#fff" strokeWidth="6" strokeLinecap="round" />
+          <line x1="68" y1="32" x2="68" y2="68" stroke="#fff" strokeWidth="10" strokeLinecap="round" />
+        </svg>
+      );
+    case "notification":
+      return (
+        <svg viewBox="0 0 100 100" style={{ width: "56%", height: "56%" }}>
+          <path
+            d="M50 10 C36 10 28 22 28 38 V52 L18 66 H82 L72 52 V38 C72 22 64 10 50 10 Z"
+            fill="#fff"
+          />
+          <path
+            d="M40 78 Q50 92 60 78"
+            fill="none"
+            stroke="#fff"
+            strokeWidth="8"
+            strokeLinecap="round"
+          />
+        </svg>
+      );
+    case "parametres":
+      return (
+        <svg viewBox="0 0 100 100" style={{ width: "56%", height: "56%" }}>
+          <circle cx="50" cy="50" r="20" fill="none" stroke="#fff" strokeWidth="9" />
+          <circle cx="50" cy="50" r="7" fill="#fff" />
+          <g fill="#fff">
+            <rect x="44" y="4" width="12" height="16" rx="3" />
+            <rect x="44" y="80" width="12" height="16" rx="3" />
+            <rect x="4" y="44" width="16" height="12" rx="3" />
+            <rect x="80" y="44" width="16" height="12" rx="3" />
+            <g transform="rotate(45 50 50)">
+              <rect x="44" y="4" width="12" height="16" rx="3" />
+              <rect x="44" y="80" width="12" height="16" rx="3" />
+              <rect x="4" y="44" width="16" height="12" rx="3" />
+              <rect x="80" y="44" width="16" height="12" rx="3" />
+            </g>
+          </g>
         </svg>
       );
   }
