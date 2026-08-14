@@ -23,8 +23,21 @@ export function extractMultiplier(token: string): number | null {
 /** Retire accents pour permettre des comparaisons insensibles a l'accentuation. */
 const COMBINING_DIACRITICS = /[̀-ͯ]/g;
 
+/**
+ * Les ligatures (Œ, Æ) n'ont pas de decomposition NFD standard — contrairement
+ * aux caracteres accentues, elles restent un seul code point apres
+ * normalize("NFD"). Sans ce remplacement explicite, "Œufs" (nom canonique
+ * affiche) ne matcherait plus jamais le mot-cle "oeuf" lors d'une seconde
+ * passe de resolution de famille.
+ */
 export function stripAccents(input: string): string {
-  return input.normalize("NFD").replace(COMBINING_DIACRITICS, "");
+  return input
+    .replace(/Œ/g, "OE")
+    .replace(/œ/g, "oe")
+    .replace(/Æ/g, "AE")
+    .replace(/æ/g, "ae")
+    .normalize("NFD")
+    .replace(COMBINING_DIACRITICS, "");
 }
 
 export function tokenize(raw: string): string[] {

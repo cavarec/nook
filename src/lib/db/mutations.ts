@@ -17,6 +17,7 @@ import {
   toTicketRow,
 } from "./mappers";
 import { computeProductInsight } from "@/lib/insights";
+import { resolveProductFamily } from "@/lib/normalization/productFamily";
 import { pushPendingMutations } from "./sync";
 
 function newId(): string {
@@ -38,17 +39,28 @@ export async function findOrCreateProduct(
   category: Category
 ): Promise<Product> {
   const db = getDb();
+
+  // Ce qui compte pour le moteur de stock, c'est la famille du produit
+  // (oeufs, cafe, lessive...), pas le libelle exact du ticket : deux
+  // tickets differents pour le meme produit ne doivent pas creer deux
+  // fiches distinctes, sinon l'historique d'achats ne s'accumule jamais.
+  const family = resolveProductFamily(name);
+
   const existing = await db.products
     .where("householdId")
     .equals(householdId)
-    .filter((p) => p.name.toLowerCase() === name.toLowerCase())
+    .filter((p) =>
+      family
+        ? resolveProductFamily(p.name) === family
+        : p.name.toLowerCase() === name.toLowerCase()
+    )
     .first();
   if (existing) return existing;
 
   const product: Product = {
     id: newId(),
     householdId,
-    name,
+    name: family ?? name,
     category,
     brand: null,
     barcode: null,
